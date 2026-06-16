@@ -61,7 +61,7 @@ A fin de generar un trabajo que, pese a ser fgenerado mediante IA, tuviera una e
 Utilicé Nano Banana para generar un fondo que representara esas gamas y esas texturas y luego de esa imágen generé la paleta de colores y parte de las directrices utilizadas en prompt. 
 De esta misma fuente de inspiración fue que surgió la temática del contenido de las landing: oficios como contraposición a IA.
 ![Juanito Dormido](screenshots/juanito.jpg)
-![Fondo de pantalla](/wallpaper.png)
+![Portada](screenshots/Portada.png)
 
 
 ## Prompt utilizado
