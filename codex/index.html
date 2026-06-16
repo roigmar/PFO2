@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academia de Oficios Laguna</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #4A8B8C;
+      --rust: #8B3A2A;
+      --linen: #E8D5B0;
+      --brown: #6B4C35;
+      --charcoal: #1A1A18;
+      --off-white: #F2E8D5;
+      --paper: #ead7ae;
+      --paper-2: #f0dfbf;
+      --shadow: rgba(26, 26, 24, 0.3);
+      --header-height: 72px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      color: var(--charcoal);
+      background-color: var(--off-white);
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(74, 139, 140, 0.28) 0 11rem, transparent 11.2rem),
+        radial-gradient(circle at 88% 8%, rgba(139, 58, 42, 0.18) 0 10rem, transparent 10.2rem),
+        linear-gradient(110deg, rgba(107, 76, 53, 0.08) 0 18%, transparent 18% 35%, rgba(74, 139, 140, 0.08) 35% 48%, transparent 48%),
+        repeating-linear-gradient(94deg, rgba(26, 26, 24, 0.035) 0 1px, transparent 1px 9px),
+        repeating-linear-gradient(0deg, rgba(107, 76, 53, 0.035) 0 1px, transparent 1px 7px);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.42;
+      filter: url("#noise");
+      background: var(--linen);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(26, 26, 24, 0.06), transparent 22%, rgba(139, 58, 42, 0.07) 45%, transparent 72%),
+        repeating-linear-gradient(135deg, transparent 0 21px, rgba(26, 26, 24, 0.035) 22px 23px),
+        repeating-linear-gradient(5deg, rgba(255, 255, 255, 0.1) 0 2px, transparent 2px 20px);
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .texture-svg {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      min-height: var(--header-height);
+      background: rgba(242, 232, 213, 0.78);
+      border-bottom: 1px solid rgba(26, 26, 24, 0.17);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 28px rgba(26, 26, 24, 0.1);
+    }
+
+    .nav-wrap {
+      width: min(1120px, calc(100% - 32px));
+      min-height: var(--header-height);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      display: inline-grid;
+      gap: 1px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 800;
+      line-height: 0.95;
+      color: var(--charcoal);
+      max-width: 210px;
+    }
+
+    .logo span:first-child {
+      font-size: 1.05rem;
+    }
+
+    .logo span:last-child {
+      color: var(--rust);
+      font-size: 1.3rem;
+    }
+
+    .nav-toggle {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: var(--charcoal);
+      background: transparent;
+      border: 1px solid rgba(26, 26, 24, 0.38);
+      cursor: pointer;
+    }
+
+    .nav-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      display: grid;
+      gap: 2px;
+      padding: 16px;
+      background: rgba(232, 213, 176, 0.96);
+      border-bottom: 1px solid rgba(26, 26, 24, 0.18);
+      transform: translateY(-135%);
+      transition: transform 220ms ease;
+      box-shadow: 0 18px 30px rgba(26, 26, 24, 0.12);
+    }
+
+    .nav-links.is-open {
+      transform: translateY(0);
+    }
+
+    .nav-links a {
+      padding: 13px 10px;
+      font-family: "Special Elite", monospace;
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      text-transform: uppercase;
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 76px 0;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-family: "Special Elite", monospace;
+      font-size: 0.86rem;
+      letter-spacing: 0;
+      color: var(--rust);
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      margin: 0;
+      line-height: 1.02;
+      letter-spacing: 0;
+      color: var(--charcoal);
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(3rem, 10vw, 5.8rem);
+      text-wrap: balance;
+    }
+
+    h2 {
+      max-width: 780px;
+      font-size: clamp(2.25rem, 8vw, 4.8rem);
+      text-wrap: balance;
+    }
+
+    h3 {
+      font-size: clamp(1.45rem, 5vw, 2rem);
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.62;
+      font-size: 1.08rem;
+    }
+
+    .hero {
+      min-height: 100vh;
+      width: 100%;
+      padding: calc(var(--header-height) + 42px) 0 40px;
+      display: grid;
+      align-items: center;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(105deg, rgba(242, 232, 213, 0.92) 0 52%, rgba(74, 139, 140, 0.22) 52%),
+        radial-gradient(circle at 78% 38%, rgba(139, 58, 42, 0.28) 0 12rem, transparent 12.1rem),
+        linear-gradient(165deg, transparent 0 28%, rgba(26, 26, 24, 0.08) 28% 31%, transparent 31%),
+        repeating-linear-gradient(90deg, rgba(107, 76, 53, 0.08) 0 2px, transparent 2px 30px);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -9vw;
+      bottom: -12vh;
+      width: min(760px, 86vw);
+      height: min(640px, 72vh);
+      z-index: -1;
+      clip-path: polygon(5% 16%, 94% 2%, 88% 84%, 17% 98%);
+      background:
+        linear-gradient(35deg, rgba(26, 26, 24, 0.28), transparent 32%),
+        repeating-linear-gradient(0deg, rgba(242, 232, 213, 0.1) 0 4px, transparent 4px 12px),
+        linear-gradient(120deg, var(--teal), #356f70 55%, var(--brown));
+      box-shadow: -18px 18px 40px rgba(26, 26, 24, 0.2);
+      opacity: 0.86;
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      gap: 26px;
+    }
+
+    .hero-inner.section {
+      padding: 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      font-size: clamp(1.15rem, 4vw, 1.45rem);
+      color: #2b2925;
+    }
+
+    .stamp-button {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 15px 24px 12px;
+      border: 3px solid currentColor;
+      color: var(--rust);
+      background:
+        radial-gradient(circle at 18% 40%, rgba(139, 58, 42, 0.1) 0 2px, transparent 2.5px),
+        radial-gradient(circle at 75% 70%, rgba(139, 58, 42, 0.16) 0 1px, transparent 1.5px),
+        rgba(242, 232, 213, 0.18);
+      font-family: "Special Elite", monospace;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      cursor: pointer;
+      transform: rotate(-2deg);
+      box-shadow: 3px 5px 0 rgba(139, 58, 42, 0.18);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .stamp-button:hover,
+    .stamp-button:focus-visible {
+      transform: rotate(-1deg) translateY(-2px);
+      box-shadow: 5px 8px 0 rgba(139, 58, 42, 0.22);
+      outline: 3px solid rgba(74, 139, 140, 0.35);
+      outline-offset: 4px;
+    }
+
+    .about-grid {
+      display: grid;
+      gap: 32px;
+      margin-top: 28px;
+    }
+
+    .about-copy {
+      max-width: 780px;
+      font-size: 1.2rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      min-height: 116px;
+      padding: 18px;
+      display: grid;
+      align-content: center;
+      background:
+        linear-gradient(135deg, rgba(242, 232, 213, 0.82), rgba(232, 213, 176, 0.92)),
+        repeating-linear-gradient(120deg, rgba(107, 76, 53, 0.07) 0 1px, transparent 1px 8px);
+      border-left: 7px solid var(--teal);
+      box-shadow: 0 11px 23px rgba(26, 26, 24, 0.12);
+    }
+
+    .stat strong {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      line-height: 1;
+      color: var(--rust);
+    }
+
+    .stat span {
+      margin-top: 7px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .courses-grid,
+    .testimonials-grid {
+      display: grid;
+      gap: 22px;
+      margin-top: 34px;
+    }
+
+    .paper-card {
+      position: relative;
+      min-height: 278px;
+      padding: 34px 28px 30px;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255, 255, 255, 0.3) 0 3px, transparent 4px),
+        radial-gradient(circle at 72% 88%, rgba(107, 76, 53, 0.11) 0 2px, transparent 3px),
+        repeating-linear-gradient(95deg, rgba(26, 26, 24, 0.045) 0 1px, transparent 1px 7px),
+        linear-gradient(135deg, var(--paper), var(--paper-2));
+      box-shadow: 0 22px 28px rgba(26, 26, 24, 0.18), 0 3px 0 rgba(255, 255, 255, 0.35) inset;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .paper-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 60%, rgba(139, 58, 42, 0.16) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 45% 35%, rgba(26, 26, 24, 0.1) 0 1px, transparent 1.8px),
+        radial-gradient(circle at 82% 20%, rgba(74, 139, 140, 0.16) 0 1px, transparent 1.8px);
+      background-size: 34px 31px, 27px 23px, 44px 39px;
+      mix-blend-mode: multiply;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .paper-card:hover {
+      transform: translateY(-5px) rotate(0deg);
+      box-shadow: 0 29px 36px rgba(26, 26, 24, 0.24);
+    }
+
+    .paper-card svg {
+      width: 48px;
+      height: 48px;
+      color: var(--teal);
+      margin-bottom: 18px;
+    }
+
+    .paper-card h3 {
+      max-width: 15ch;
+      color: var(--rust);
+    }
+
+    .paper-card p {
+      margin-top: 14px;
+      font-size: 1rem;
+      color: #2d2924;
+    }
+
+    .paper-card:nth-child(1) {
+      clip-path: polygon(2% 5%, 97% 1%, 94% 92%, 9% 99%, 0 56%);
+      transform: rotate(-1.4deg);
+    }
+
+    .paper-card:nth-child(2) {
+      clip-path: polygon(6% 0, 100% 8%, 93% 100%, 4% 94%, 0 19%);
+      transform: rotate(1.2deg);
+    }
+
+    .paper-card:nth-child(3) {
+      clip-path: polygon(0 9%, 92% 3%, 100% 66%, 89% 98%, 7% 94%);
+      transform: rotate(-0.8deg);
+    }
+
+    .paper-card:nth-child(4) {
+      clip-path: polygon(4% 3%, 95% 0, 100% 92%, 27% 100%, 0 86%);
+      transform: rotate(1.7deg);
+    }
+
+    .paper-card:nth-child(5) {
+      clip-path: polygon(8% 1%, 100% 6%, 96% 87%, 65% 100%, 0 92%, 3% 23%);
+      transform: rotate(-1.9deg);
+    }
+
+    .paper-card:nth-child(6) {
+      clip-path: polygon(1% 12%, 78% 0, 98% 18%, 95% 96%, 12% 100%, 0 72%);
+      transform: rotate(0.9deg);
+    }
+
+    .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .benefits span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 12px 6px;
+      background: var(--teal);
+      color: #fffdf6;
+      font-family: "Special Elite", monospace;
+      font-size: 0.88rem;
+      clip-path: polygon(3% 8%, 100% 0, 97% 89%, 8% 100%, 0 40%);
+    }
+
+    .testimony {
+      min-height: auto;
+      padding: 32px 26px;
+      background:
+        repeating-linear-gradient(2deg, rgba(26, 26, 24, 0.04) 0 1px, transparent 1px 8px),
+        linear-gradient(140deg, #f0dfbf, #e3c99a);
+    }
+
+    .testimony:nth-child(1) {
+      clip-path: polygon(0 5%, 96% 1%, 100% 80%, 87% 100%, 8% 94%);
+      transform: rotate(-1.1deg);
+    }
+
+    .testimony:nth-child(2) {
+      clip-path: polygon(5% 0, 100% 9%, 94% 96%, 15% 100%, 0 82%, 1% 18%);
+      transform: rotate(1.5deg);
+    }
+
+    .testimony:nth-child(3) {
+      clip-path: polygon(2% 10%, 86% 0, 99% 14%, 95% 100%, 0 91%);
+      transform: rotate(-0.5deg);
+    }
+
+    .quote-mark {
+      display: block;
+      height: 26px;
+      margin-bottom: 10px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 4.5rem;
+      line-height: 0.4;
+      color: var(--teal);
+    }
+
+    .testimony p {
+      font-size: 1.08rem;
+    }
+
+    .testimony cite {
+      display: block;
+      margin-top: 20px;
+      font-family: "Special Elite", monospace;
+      font-style: normal;
+      color: var(--rust);
+    }
+
+    .contact-panel {
+      display: grid;
+      gap: 24px;
+      margin-top: 30px;
+      padding: 24px;
+      background:
+        linear-gradient(135deg, rgba(74, 139, 140, 0.12), rgba(139, 58, 42, 0.1)),
+        repeating-linear-gradient(90deg, rgba(26, 26, 24, 0.045) 0 1px, transparent 1px 12px),
+        rgba(242, 232, 213, 0.72);
+      border: 1px solid rgba(26, 26, 24, 0.2);
+      box-shadow: 0 20px 38px rgba(26, 26, 24, 0.14);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      font-family: "Special Elite", monospace;
+      color: var(--brown);
+      text-transform: uppercase;
+      font-size: 0.84rem;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 12px 13px;
+      color: var(--charcoal);
+      background: rgba(255, 250, 240, 0.8);
+      border: 2px solid rgba(107, 76, 53, 0.54);
+      border-radius: 0;
+    }
+
+    .field textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: 3px solid rgba(74, 139, 140, 0.35);
+      border-color: var(--teal);
+    }
+
+    .site-footer {
+      padding: 42px 0;
+      color: var(--off-white);
+      background:
+        linear-gradient(135deg, rgba(26, 26, 24, 0.94), rgba(41, 36, 30, 0.98)),
+        repeating-linear-gradient(90deg, rgba(242, 232, 213, 0.05) 0 1px, transparent 1px 9px);
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      gap: 22px;
+    }
+
+    .footer-info {
+      display: grid;
+      gap: 8px;
+      color: #fff6e5;
+    }
+
+    .socials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .socials a {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--off-white);
+      border: 1px solid rgba(242, 232, 213, 0.5);
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .socials a:hover,
+    .socials a:focus-visible {
+      background: var(--rust);
+      transform: translateY(-2px);
+      outline: 2px solid var(--linen);
+      outline-offset: 3px;
+    }
+
+    .socials svg {
+      width: 21px;
+      height: 21px;
+      fill: currentColor;
+    }
+
+    .copyright {
+      font-family: "Special Elite", monospace;
+      color: #e9d7b6;
+      font-size: 0.92rem;
+    }
+
+    @media (min-width: 768px) {
+      :root {
+        --header-height: 82px;
+      }
+
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-links {
+        position: static;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .nav-links a {
+        padding: 10px 9px 8px;
+        font-size: 0.78rem;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        background: rgba(139, 58, 42, 0.12);
+        outline: 2px solid rgba(74, 139, 140, 0.4);
+        outline-offset: 2px;
+      }
+
+      .section {
+        padding: 98px 0;
+      }
+
+      .about-grid {
+        grid-template-columns: 1.04fr 0.96fr;
+        align-items: start;
+        gap: 44px;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contact-panel {
+        padding: 34px;
+      }
+
+      .contact-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      .site-footer {
+        padding: 54px 0;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr auto;
+        align-items: center;
+      }
+
+      .copyright {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .nav-links a {
+        padding-inline: 12px;
+        font-size: 0.86rem;
+      }
+
+      .hero-inner {
+        padding-top: 34px;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 28px;
+      }
+
+      .paper-card {
+        min-height: 304px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg class="texture-svg" aria-hidden="true">
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="saturate" values="0"></feColorMatrix>
+    </filter>
+  </svg>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="logo" href="#inicio" aria-label="Academia de Oficios Laguna">
+        <span>Academia de Oficios</span>
+        <span>Laguna</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+      <nav class="nav-links" id="nav-links" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-nosotros">Sobre Nosotros</a>
+        <a href="#cursos">Cursos</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#contacto">Contacto</a>
+        <a href="../index.html">Portada</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-inner section visible">
+        <span class="section-kicker">Formación laboral en Buenos Aires</span>
+        <h1>Capacitaciones que abren puertas al futuro</h1>
+        <p>Aprendé habilidades con alta demanda laboral y preparate para acceder a nuevas oportunidades profesionales.</p>
+        <a class="stamp-button" href="#contacto">Inscribite Hoy</a>
+      </div>
+    </section>
+
+    <section class="section" id="sobre-nosotros">
+      <span class="section-kicker">Sobre nosotros</span>
+      <h2>Oficios para transformar el presente.</h2>
+      <div class="about-grid">
+        <p class="about-copy">En Academia de Oficios Laguna creemos que cada persona merece la oportunidad de desarrollar su potencial y construir un futuro mejor. Inspirados por los valores de esfuerzo, superación y transformación social, ofrecemos programas de formación diseñados para brindar herramientas concretas para el mundo laboral.</p>
+        <div class="stats" aria-label="Indicadores de la academia">
+          <div class="stat"><strong>2.500+</strong><span>estudiantes</span></div>
+          <div class="stat"><strong>85%</strong><span>inserción laboral</span></div>
+          <div class="stat"><strong>30</strong><span>cursos</span></div>
+          <div class="stat"><strong>10</strong><span>años</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cursos">
+      <span class="section-kicker">Cursos</span>
+      <h2>Aprendizaje práctico con salida laboral.</h2>
+      <div class="courses-grid">
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14"></path>
+          </svg>
+          <h3>Desarrollo Web y Programación</h3>
+          <p>Construí sitios y aplicaciones desde cero con lógica, interfaces modernas y proyectos para tu portfolio.</p>
+        </article>
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M4 20h16M6 16l4-10 4 10M8 12h4M17 6h3v10h-3z"></path>
+          </svg>
+          <h3>Diseño Gráfico y Marketing Digital</h3>
+          <p>Aprendé identidad visual, piezas digitales, redes sociales y campañas orientadas a resultados reales.</p>
+        </article>
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M13 2 5 14h6l-1 8 9-13h-6z"></path>
+          </svg>
+          <h3>Electricidad Domiciliaria</h3>
+          <p>Formate en instalaciones, reparación, seguridad eléctrica y lectura de planos para viviendas.</p>
+        </article>
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M4 18h16M7 18V8h10v10M5 8h14M9 8V5h6v3M9 12h6"></path>
+          </svg>
+          <h3>Carpintería y Fabricación de Muebles</h3>
+          <p>Trabajá madera, herramientas y terminaciones para crear piezas sólidas, útiles y comercializables.</p>
+        </article>
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M5 4h14v10H5zM8 20h8M12 14v6M17 17h3v3h-3zM4 17h3v3H4z"></path>
+          </svg>
+          <h3>Reparación de Computadoras y Dispositivos Móviles</h3>
+          <p>Diagnosticá fallas, reemplazá componentes y resolvé problemas de software y hardware cotidianos.</p>
+        </article>
+        <article class="paper-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-7M20 16v-3M7 7l4-3 4 2 4-4"></path>
+          </svg>
+          <h3>Emprendedurismo y Gestión de Negocios</h3>
+          <p>Convertí una idea en un plan viable con costos, ventas, administración y estrategia comercial.</p>
+        </article>
+      </div>
+      <div class="benefits" aria-label="Beneficios">
+        <span>Certificación oficial</span>
+        <span>Presencial y virtual</span>
+        <span>Profesores especializados</span>
+        <span>Proyectos reales</span>
+        <span>Bolsa de empleo</span>
+        <span>Asesoramiento</span>
+        <span>Inserción laboral</span>
+      </div>
+    </section>
+
+    <section class="section" id="testimonios">
+      <span class="section-kicker">Testimonios</span>
+      <h2>Historias que siguen trabajando.</h2>
+      <div class="testimonials-grid">
+        <article class="paper-card testimony">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>Gracias a Academia Laguna conseguí mi primer trabajo como diseñadora gráfica apenas dos meses después de finalizar el curso.</p>
+          <cite>María González</cite>
+        </article>
+        <article class="paper-card testimony">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>Los contenidos son prácticos y los profesores tienen experiencia real en el sector. Hoy trabajo como técnico en reparación de computadoras.</p>
+          <cite>Lucas Fernández</cite>
+        </article>
+        <article class="paper-card testimony">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <p>El curso de programación me permitió iniciar una carrera profesional que antes veía imposible.</p>
+          <cite>Sofía Ramírez</cite>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <span class="section-kicker">Contacto</span>
+      <h2>Solicitá información sobre nuestros cursos</h2>
+      <div class="contact-panel">
+        <form class="contact-form" aria-label="Formulario de consulta">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="curso">Curso de interés</label>
+            <select id="curso" name="curso">
+              <option value="">Seleccioná un curso</option>
+              <option>Desarrollo Web y Programación</option>
+              <option>Diseño Gráfico y Marketing Digital</option>
+              <option>Electricidad Domiciliaria</option>
+              <option>Carpintería y Fabricación de Muebles</option>
+              <option>Reparación de Computadoras y Dispositivos Móviles</option>
+              <option>Emprendedurismo y Gestión de Negocios</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje"></textarea>
+          </div>
+          <button class="stamp-button" type="button">Enviar Consulta</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-info">
+        <span>Av. Nueva Esperanza 1250, Buenos Aires</span>
+        <span>+54 11 4000-0000</span>
+        <span>contacto@academialaguna.edu.ar</span>
+      </div>
+      <div class="socials" aria-label="Redes sociales">
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3c-3.3 0-5 2-5 5v3H6v4h3v8h4v-8h3l1-4h-4V9c0-.7.3-1 1-1z"></path></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10c3 0 5 2 5 5v10c0 3-2 5-5 5H7c-3 0-5-2-5-5V7c0-3 2-5 5-5zm0 2c-1.9 0-3 1.1-3 3v10c0 1.9 1.1 3 3 3h10c1.9 0 3-1.1 3-3V7c0-1.9-1.1-3-3-3H7zm5 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm5.5-3.1a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2z"></path></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3a2.2 2.2 0 1 1 0 4.4A2.2 2.2 0 0 1 4 3zM2 9h4v13H2V9zm7 0h3.8v1.8h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6.1V22h-4v-6.3c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V22H9V9z"></path></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 7.4s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C15.4 3.8 12 3.8 12 3.8s-3.4 0-6.7.2c-.5.1-1.5.1-2.4 1C2.2 5.7 2 7.4 2 7.4S1.8 9.4 1.8 11.5v1.9c0 2.1.2 4.1.2 4.1s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 6.5.2 6.5.2s3.4 0 6.7-.3c.5 0 1.5-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-2 .2-4.1v-1.9c0-2-.2-4-.2-4zM10 15.5v-7l6 3.5-6 3.5z"></path></svg>
+        </a>
+      </div>
+      <div class="copyright">© 2026 Academia de Oficios Laguna.</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.querySelector(".nav-links");
+    const navItems = document.querySelectorAll(".nav-links a");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    });
+
+    navItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.setAttribute("aria-label", "Abrir menú");
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".section").forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>

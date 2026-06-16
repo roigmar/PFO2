@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Oficios Laguna — Capacitaciones para el Futuro</title>
+    <meta name="description" content="Formación en oficios de alta demanda laboral en Buenos Aires. Cursos presenciales y virtuales de Programación, Electricidad, Carpintería, Diseño y más.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,300..900;1,300..900&family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS DESIGN SYSTEM & VARIABLES */
+        :root {
+            --teal: #4A8B8C;
+            --teal-dark: #3b7071;
+            --teal-light: #6aa3a4;
+            --rust: #8B3A2A;
+            --rust-dark: #752f22;
+            --rust-light: #a64f3e;
+            --linen: #E8D5B0;
+            --linen-dark: #d6be92;
+            --brown: #6B4C35;
+            --brown-dark: #4e3624;
+            --charcoal: #1A1A18;
+            --charcoal-light: #2c2c27;
+            --off-white: #F2E8D5;
+            --off-white-dark: #e5d7be;
+            
+            --font-headings: 'Playfair Display', serif;
+            --font-body: 'Source Sans 3', sans-serif;
+            --font-labels: 'Special Elite', monospace;
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--off-white);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            
+            /* Industrial paper background texture using CSS gradients & SVG noise */
+            background-image: 
+                linear-gradient(rgba(107, 76, 53, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(107, 76, 53, 0.02) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+            background-size: 40px 40px, 40px 40px, auto;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, h4 {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--charcoal-light);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--off-white-dark);
+            border-left: 2px solid var(--brown);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--brown);
+            border: 2px solid var(--off-white-dark);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--rust);
+        }
+
+        /* STICKY HEADER & NAV */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(242, 232, 213, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--brown);
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(26, 26, 24, 0.1);
+            padding: 0.2rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            fill: var(--rust);
+        }
+
+        .logo-text {
+            font-family: var(--font-headings);
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.75rem;
+            font-family: var(--font-labels);
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-top: -2px;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-family: var(--font-labels);
+            font-size: 1rem;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.2rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--rust);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--rust);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu Icon */
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .menu-btn span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--charcoal);
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        .menu-btn span:nth-child(1) { top: 0px; }
+        .menu-btn span:nth-child(2) { top: 10px; }
+        .menu-btn span:nth-child(3) { top: 20px; }
+
+        .menu-btn.open span:nth-child(1) {
+            top: 10px;
+            transform: rotate(135deg);
+        }
+        .menu-btn.open span:nth-child(2) {
+            opacity: 0;
+            left: -60px;
+        }
+        .menu-btn.open span:nth-child(3) {
+            top: 10px;
+            transform: rotate(-135deg);
+        }
+
+        /* SECTION CONTAINER STRUCTURE */
+        section {
+            padding: 6rem 1.5rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* FADE-IN ANIMATION SYSTEM */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SIGNATURE ELEMENT: INK STAMP BUTTON */
+        .btn-stamp {
+            display: inline-block;
+            font-family: var(--font-labels);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            color: var(--rust);
+            border: 4px double var(--rust);
+            padding: 0.8rem 2.2rem;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            transform: rotate(-1.5deg);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            user-select: none;
+            
+            /* CSS ink texture simulation */
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 1.8 -0.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 1.8 -0.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .btn-stamp::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border: 1.5px solid var(--rust);
+            pointer-events: none;
+        }
+
+        .btn-stamp:hover {
+            transform: rotate(-0.5deg) scale(1.04);
+            color: var(--rust-light);
+            border-color: var(--rust-light);
+            background-color: rgba(139, 58, 42, 0.03);
+            box-shadow: 0 6px 15px rgba(139, 58, 42, 0.08);
+        }
+
+        .btn-stamp:active {
+            transform: rotate(-2.5deg) scale(0.97);
+            background-color: rgba(139, 58, 42, 0.08);
+        }
+
+        .btn-stamp-teal {
+            color: var(--teal);
+            border-color: var(--teal);
+        }
+        .btn-stamp-teal::before {
+            border-color: var(--teal);
+        }
+        .btn-stamp-teal:hover {
+            color: var(--teal-light);
+            border-color: var(--teal-light);
+            background-color: rgba(74, 139, 140, 0.03);
+            box-shadow: 0 6px 15px rgba(74, 139, 140, 0.08);
+        }
+        .btn-stamp-teal:active {
+            background-color: rgba(74, 139, 140, 0.08);
+        }
+
+        /* 1. HERO SECTION */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(74, 139, 140, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 90% 80%, rgba(139, 58, 42, 0.06) 0%, transparent 60%);
+        }
+
+        /* Subtle grid background to look like draft paper */
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(107, 76, 53, 0.04) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(107, 76, 53, 0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 3.5rem;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-label {
+            font-family: var(--font-labels);
+            background-color: var(--brown);
+            color: var(--off-white);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding: 0.4rem 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            transform: rotate(-1deg);
+            box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            font-weight: 800;
+        }
+
+        .hero-title mark {
+            background: none;
+            color: var(--rust);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-title mark::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background-color: rgba(74, 139, 140, 0.25);
+            z-index: -1;
+            transform: rotate(-0.5deg);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2vw, 1.4rem);
+            color: var(--charcoal-light);
+            margin-bottom: 2.5rem;
+            max-width: 620px;
+            font-weight: 400;
+        }
+
+        /* Stencil Art Collage for Hero Graphic */
+        .hero-graphic {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-collage-wrapper {
+            filter: drop-shadow(6px 12px 20px rgba(0,0,0,0.15));
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1;
+            position: relative;
+            transform: rotate(2deg);
+        }
+
+        .hero-collage-base {
+            width: 100%;
+            height: 100%;
+            background-color: var(--linen);
+            clip-path: polygon(2% 4%, 95% 1%, 98% 96%, 4% 98%);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+            border: 1px solid rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Industrial collage graphic details */
+        .collage-stencil {
+            width: 80%;
+            height: 80%;
+            opacity: 0.15;
+            position: absolute;
+            top: 10%; left: 10%;
+            fill: var(--brown);
+            pointer-events: none;
+        }
+
+        .collage-badge {
+            font-family: var(--font-labels);
+            font-size: 1.5rem;
+            color: var(--rust);
+            border: 3px dashed var(--rust);
+            padding: 1rem;
+            text-align: center;
+            transform: rotate(-10deg);
+            background-color: rgba(232, 213, 176, 0.4);
+            z-index: 3;
+            letter-spacing: -0.5px;
+        }
+
+        .collage-badge span {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--charcoal);
+            text-transform: uppercase;
+        }
+
+        /* 2. SOBRE NOSOTROS SECTION */
+        .about-section {
+            background-color: var(--off-white-dark);
+            border-top: 2px solid var(--brown);
+            border-bottom: 2px solid var(--brown);
+            position: relative;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .about-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--teal);
+            margin-top: 1rem;
+        }
+
+        .about-text {
+            font-size: 1.15rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.7;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-card-wrap {
+            filter: drop-shadow(4px 6px 12px rgba(0,0,0,0.1));
+            transition: var(--transition-smooth);
+        }
+
+        .stat-card-wrap:hover {
+            transform: translateY(-5px);
+            filter: drop-shadow(6px 12px 18px rgba(0,0,0,0.15));
+        }
+
+        .stat-card {
+            background-color: var(--linen);
+            clip-path: polygon(1% 2%, 98% 4%, 96% 96%, 3% 97%);
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border: 1px solid rgba(107, 76, 53, 0.15);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        }
+
+        .stat-card-wrap:nth-child(even) .stat-card {
+            clip-path: polygon(3% 1%, 96% 3%, 98% 97%, 1% 95%);
+            background-color: var(--teal);
+            color: var(--off-white);
+        }
+
+        .stat-number {
+            font-family: var(--font-labels);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--rust);
+            margin-bottom: 0.2rem;
+        }
+
+        .stat-card-wrap:nth-child(even) .stat-number {
+            color: var(--linen);
+        }
+
+        .stat-label {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--charcoal);
+        }
+
+        .stat-card-wrap:nth-child(even) .stat-label {
+            color: var(--off-white);
+        }
+
+        /* 3. CURSOS SECTION */
+        .courses-section {
+            background-color: var(--off-white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-labels);
+            color: var(--teal-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.95rem;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 5rem;
+        }
+
+        /* IRREGULAR HAND-CUT PAPER SHADOW WRAPPERS */
+        .card-shadow-wrapper {
+            filter: drop-shadow(4px 8px 12px rgba(26, 26, 24, 0.15));
+            transition: var(--transition-smooth);
+        }
+
+        .card-shadow-wrapper:hover {
+            transform: translateY(-8px) scale(1.02);
+            filter: drop-shadow(8px 16px 20px rgba(26, 26, 24, 0.22));
+        }
+
+        /* HARDCODED UNIQUE ROTATIONS PER WRAPPER */
+        .card-shadow-wrapper:nth-child(1) { transform: rotate(-1.2deg); }
+        .card-shadow-wrapper:nth-child(2) { transform: rotate(1.5deg); }
+        .card-shadow-wrapper:nth-child(3) { transform: rotate(-0.8deg); }
+        .card-shadow-wrapper:nth-child(4) { transform: rotate(1.1deg); }
+        .card-shadow-wrapper:nth-child(5) { transform: rotate(-1.7deg); }
+        .card-shadow-wrapper:nth-child(6) { transform: rotate(0.9deg); }
+
+        .card-shadow-wrapper:hover {
+            transform: translateY(-8px) rotate(0deg) scale(1.02);
+        }
+
+        .card-clipped-content {
+            background-color: var(--linen);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            padding: 3rem 2.2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 380px;
+            border: 1px solid rgba(107, 76, 53, 0.12);
+        }
+
+        /* UNIQUE CLIP-PATH POLYGONS (12-vertex irregular hand-sheared details) */
+        .card-shadow-wrapper:nth-child(1) .card-clipped-content {
+            clip-path: polygon(1% 2%, 97% 1%, 99% 34%, 98% 68%, 99% 97%, 74% 96%, 33% 98%, 2% 95%, 1% 65%, 3% 32%);
+        }
+        .card-shadow-wrapper:nth-child(2) .card-clipped-content {
+            clip-path: polygon(3% 1%, 35% 3%, 68% 1%, 98% 2%, 97% 33%, 99% 72%, 96% 98%, 65% 96%, 32% 97%, 1% 96%, 2% 64%, 1% 33%);
+        }
+        .card-shadow-wrapper:nth-child(3) .card-clipped-content {
+            clip-path: polygon(2% 3%, 33% 1%, 65% 2%, 99% 1%, 97% 35%, 98% 65%, 97% 97%, 68% 99%, 34% 96%, 2% 98%, 3% 67%, 1% 35%);
+        }
+        .card-shadow-wrapper:nth-child(4) .card-clipped-content {
+            clip-path: polygon(1% 1%, 32% 2%, 67% 0.5%, 98% 3%, 99% 36%, 97% 69%, 99% 96%, 66% 98%, 35% 96%, 3% 97%, 1% 66%, 2% 34%);
+        }
+        .card-shadow-wrapper:nth-child(5) .card-clipped-content {
+            clip-path: polygon(2.5% 2%, 34% 0.8%, 66% 2.2%, 99% 1.5%, 97.5% 34.5%, 98.8% 67.5%, 96.5% 98%, 68% 96.5%, 33% 98.5%, 1.5% 96.2%, 2.2% 65.5%, 1.2% 32.5%);
+        }
+        .card-shadow-wrapper:nth-child(6) .card-clipped-content {
+            clip-path: polygon(0.8% 3%, 35% 1.2%, 67% 2.8%, 98.5% 1%, 96.8% 32.8%, 99.2% 66.2%, 97.2% 96.8%, 65% 98.2%, 32% 96.2%, 2.5% 97.8%, 1.5% 63.8%, 2.8% 34.2%);
+        }
+
+        .course-icon-wrap {
+            background-color: rgba(74, 139, 140, 0.12);
+            width: 65px;
+            height: 65px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+            clip-path: polygon(5% 2%, 94% 6%, 97% 93%, 2% 98%);
+            border: 1.5px solid var(--teal);
+        }
+
+        .course-icon {
+            width: 32px;
+            height: 32px;
+            fill: var(--teal-dark);
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+
+        .course-desc {
+            font-size: 0.98rem;
+            color: var(--charcoal-light);
+            margin-bottom: 2rem;
+        }
+
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed rgba(107, 76, 53, 0.25);
+            padding-top: 1.2rem;
+        }
+
+        .course-btn-label {
+            font-family: var(--font-labels);
+            font-size: 0.85rem;
+            color: var(--rust);
+            text-transform: uppercase;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.3s ease;
+        }
+
+        .card-shadow-wrapper:hover .course-btn-label {
+            gap: 0.6rem;
+        }
+
+        .course-tag {
+            font-family: var(--font-labels);
+            font-size: 0.75rem;
+            background-color: var(--brown);
+            color: var(--off-white);
+            padding: 0.2rem 0.6rem;
+            text-transform: uppercase;
+            transform: rotate(-1.5deg);
+        }
+
+        /* 7 BENEFITS INLINE TAGS */
+        .benefits-container {
+            text-align: center;
+            margin-top: 5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2.5rem;
+            background-color: rgba(107, 76, 53, 0.05);
+            border: 2px dashed var(--brown);
+            position: relative;
+        }
+
+        .benefits-title {
+            font-family: var(--font-headings);
+            font-size: 1.8rem;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .benefits-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .benefit-tag {
+            font-family: var(--font-labels);
+            font-size: 0.95rem;
+            background-color: var(--teal);
+            color: var(--off-white);
+            padding: 0.5rem 1.2rem;
+            box-shadow: 3px 4px 8px rgba(26,26,24,0.12);
+            border-left: 2px solid rgba(0,0,0,0.15);
+            border-right: 2px solid rgba(0,0,0,0.15);
+            transition: var(--transition-smooth);
+            cursor: default;
+        }
+
+        .benefit-tag:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            background-color: var(--rust);
+        }
+
+        /* UNIQUE ROTATIONS FOR STAMP TAGS */
+        .benefit-tag:nth-child(1) { transform: rotate(-1.5deg); }
+        .benefit-tag:nth-child(2) { transform: rotate(1.2deg); }
+        .benefit-tag:nth-child(3) { transform: rotate(-0.8deg); }
+        .benefit-tag:nth-child(4) { transform: rotate(2deg); }
+        .benefit-tag:nth-child(5) { transform: rotate(-1.8deg); }
+        .benefit-tag:nth-child(6) { transform: rotate(1.5deg); }
+        .benefit-tag:nth-child(7) { transform: rotate(-1.2deg); }
+
+        /* 4. TESTIMONIOS SECTION */
+        .testimonials-section {
+            background-color: var(--charcoal);
+            background-image: 
+                linear-gradient(rgba(242, 232, 213, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(242, 232, 213, 0.02) 1px, transparent 1px),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            background-size: 60px 60px, 60px 60px, auto;
+            border-top: 3px solid var(--rust);
+            border-bottom: 3px solid var(--rust);
+            color: var(--off-white);
+        }
+
+        .testimonials-section .section-title {
+            color: var(--off-white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        /* TORN-PAPER EFFECT USING COMPLEX JAGGED CLIP PATHS */
+        .torn-shadow-wrapper {
+            filter: drop-shadow(6px 10px 15px rgba(0, 0, 0, 0.4));
+            transition: var(--transition-smooth);
+        }
+
+        .torn-shadow-wrapper:hover {
+            transform: translateY(-8px) scale(1.01);
+            filter: drop-shadow(8px 16px 20px rgba(0, 0, 0, 0.55));
+        }
+
+        .torn-shadow-wrapper:nth-child(1) { transform: rotate(-1deg); }
+        .torn-shadow-wrapper:nth-child(2) { transform: rotate(1.2deg); }
+        .torn-shadow-wrapper:nth-child(3) { transform: rotate(-0.8deg); }
+
+        .torn-paper-card {
+            background-color: var(--off-white);
+            color: var(--charcoal);
+            padding: 3.5rem 2.2rem;
+            position: relative;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            border-left: 1px solid rgba(26,26,24,0.06);
+            border-right: 1px solid rgba(26,26,24,0.06);
+        }
+
+        /* JAGGED EDGES CLIP-PATHS FOR TORN PAPER */
+        .torn-shadow-wrapper:nth-child(1) .torn-paper-card {
+            clip-path: polygon(0% 4%, 4% 1%, 8% 5%, 12% 2%, 16% 6%, 20% 3%, 24% 7%, 28% 2%, 32% 5%, 36% 2%, 40% 6%, 44% 3%, 48% 6%, 52% 2%, 56% 5%, 60% 1%, 64% 5%, 68% 2%, 72% 6%, 76% 2%, 80% 5%, 84% 2%, 88% 6%, 92% 3%, 96% 6%, 100% 2%, 99% 30%, 98% 65%, 99% 96%, 96% 93%, 92% 96%, 88% 92%, 84% 95%, 80% 93%, 76% 96%, 72% 92%, 68% 95%, 64% 93%, 60% 96%, 56% 92%, 52% 95%, 48% 92%, 44% 96%, 40% 93%, 36% 95%, 32% 92%, 28% 96%, 24% 92%, 20% 95%, 16% 92%, 12% 96%, 8% 93%, 4% 95%, 0% 93%);
+        }
+        .torn-shadow-wrapper:nth-child(2) .torn-paper-card {
+            clip-path: polygon(0% 3%, 5% 5%, 10% 2%, 15% 6%, 20% 1%, 25% 5%, 30% 2%, 35% 6%, 40% 3%, 45% 5%, 50% 2%, 55% 6%, 60% 2%, 65% 5%, 70% 1%, 75% 6%, 80% 3%, 85% 5%, 90% 2%, 95% 6%, 100% 3%, 98% 32%, 99% 68%, 98% 97%, 95% 94%, 90% 96%, 85% 93%, 80% 95%, 75% 92%, 70% 96%, 65% 93%, 60% 95%, 55% 92%, 50% 96%, 45% 93%, 40% 95%, 35% 92%, 30% 96%, 25% 93%, 20% 95%, 15% 92%, 10% 96%, 5% 93%, 0% 95%);
+        }
+        .torn-shadow-wrapper:nth-child(3) .torn-paper-card {
+            clip-path: polygon(0% 5%, 6% 3%, 12% 6%, 18% 2%, 24% 5%, 30% 3%, 36% 6%, 42% 2%, 48% 5%, 54% 3%, 60% 6%, 66% 2%, 72% 5%, 78% 3%, 84% 6%, 90% 2%, 96% 5%, 100% 4%, 99% 35%, 98% 66%, 99% 95%, 94% 93%, 88% 96%, 82% 92%, 76% 95%, 70% 93%, 64% 96%, 58% 92%, 52% 95%, 46% 93%, 40% 96%, 34% 92%, 28% 95%, 22% 93%, 16% 96%, 10% 92%, 4% 95%, 0% 94%);
+        }
+
+        .quote-icon {
+            font-family: var(--font-headings);
+            font-size: 5rem;
+            color: var(--teal);
+            line-height: 0.1;
+            position: absolute;
+            top: 2.2rem;
+            left: 1.5rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            color: var(--charcoal-light);
+            margin-bottom: 1.8rem;
+            position: relative;
+            z-index: 2;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px dashed rgba(107, 76, 53, 0.2);
+            padding-top: 1.2rem;
+        }
+
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--brown);
+            background-color: var(--linen);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-labels);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--brown-dark);
+        }
+
+        .author-info h4 {
+            font-family: var(--font-headings);
+            font-size: 1.15rem;
+            color: var(--charcoal);
+            font-weight: 700;
+        }
+
+        .author-info span {
+            font-family: var(--font-labels);
+            font-size: 0.78rem;
+            color: var(--rust);
+            text-transform: uppercase;
+        }
+
+        /* 5. CONTACTO SECTION */
+        .contact-section {
+            background-color: var(--off-white);
+            position: relative;
+        }
+
+        /* Clipboard Collage Frame Container */
+        .clipboard-container {
+            max-width: 680px;
+            margin: 0 auto;
+            background-color: var(--brown-dark);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            border: 3px solid var(--charcoal);
+            padding: 3rem 2rem 2.5rem 2rem;
+            position: relative;
+            box-shadow: 8px 12px 25px rgba(0, 0, 0, 0.25);
+            margin-top: 3rem;
+        }
+
+        /* Clipboard Metallic Clip on top */
+        .clipboard-clip {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 40px;
+            background: linear-gradient(135deg, #7a7a7a 0%, #3a3a3a 100%);
+            border: 2px solid var(--charcoal);
+            border-bottom: none;
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.4), 0 4px 6px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clipboard-clip::after {
+            content: '';
+            width: 35px;
+            height: 12px;
+            background-color: #222;
+            border-radius: 4px;
+        }
+
+        /* Paper sheet containing form */
+        .clipboard-paper {
+            background-color: var(--linen);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            padding: 3.5rem 2.5rem 3rem 2.5rem;
+            border: 1px solid rgba(0,0,0,0.15);
+            clip-path: polygon(1% 1.5%, 98.5% 0.5%, 99% 98.5%, 1.5% 97.5%);
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .form-group-full {
+            grid-column: span 2;
+        }
+
+        /* Typewriter styled labels and inputs */
+        .form-label {
+            font-family: var(--font-labels);
+            font-size: 0.9rem;
+            color: var(--brown-dark);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            font-family: var(--font-labels);
+            font-size: 1.05rem;
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid var(--brown);
+            padding: 0.6rem 0.4rem;
+            color: var(--charcoal);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-bottom-color: var(--rust);
+            background-color: rgba(107, 76, 53, 0.03);
+        }
+
+        /* Specific dropdown arrow override */
+        .form-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%238B3A2A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 2rem;
+            cursor: pointer;
+        }
+
+        .form-textarea {
+            resize: none;
+            min-height: 120px;
+            line-height: 1.5;
+            border: 2px solid var(--brown);
+            background-color: rgba(242, 232, 213, 0.2);
+            padding: 0.8rem;
+        }
+
+        .form-textarea:focus {
+            border-color: var(--rust);
+            background-color: rgba(242, 232, 213, 0.4);
+        }
+
+        .form-submit-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .form-submit-container button {
+            outline: none;
+        }
+
+        /* 6. FOOTER SECTION */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--off-white-dark);
+            padding: 4.5rem 1.5rem 2.5rem 1.5rem;
+            border-top: 4px solid var(--brown);
+            position: relative;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+        }
+
+        .footer-logo-wrap {
+            margin-bottom: 1.8rem;
+        }
+
+        .footer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .footer-contact-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--teal);
+        }
+
+        .footer-socials {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.2rem;
+        }
+
+        .social-title {
+            font-family: var(--font-labels);
+            font-size: 1rem;
+            text-transform: uppercase;
+            color: var(--linen);
+            letter-spacing: 1px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-link {
+            background-color: rgba(242, 232, 213, 0.06);
+            width: 46px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid var(--brown);
+            clip-path: polygon(3% 5%, 97% 1%, 95% 95%, 2% 98%);
+            transition: var(--transition-smooth);
+        }
+
+        .social-link:hover {
+            background-color: var(--rust);
+            border-color: var(--rust-light);
+            transform: translateY(-4px) rotate(-3deg);
+        }
+
+        .social-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--off-white);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-top: 1px dashed rgba(242, 232, 213, 0.15);
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-labels);
+            font-size: 0.85rem;
+            color: rgba(242, 232, 213, 0.5);
+        }
+
+        /* CUSTOM MODAL FOR SIMULATED TELEGRAM */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(26, 26, 24, 0.8);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-wrapper {
+            filter: drop-shadow(8px 16px 30px rgba(0,0,0,0.5));
+            width: 100%;
+            max-width: 520px;
+            transform: scale(0.9) rotate(-1deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.open .modal-wrapper {
+            transform: scale(1) rotate(0deg);
+        }
+
+        .telegram-card {
+            background-color: var(--linen);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.12 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+            clip-path: polygon(1% 2%, 99% 0.5%, 97.5% 98.5%, 2% 96.5%);
+            border: 2px solid var(--charcoal);
+            padding: 3.5rem 2.5rem;
+            position: relative;
+        }
+
+        .telegram-stamp {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 90px;
+            height: 90px;
+            border: 4px double var(--rust);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-labels);
+            font-size: 0.65rem;
+            font-weight: bold;
+            color: var(--rust);
+            text-transform: uppercase;
+            transform: rotate(15deg);
+            background-color: rgba(232, 213, 176, 0.3);
+            user-select: none;
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 1.8 -0.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .telegram-header {
+            border-bottom: 2px solid var(--charcoal);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .telegram-header h3 {
+            font-family: var(--font-labels);
+            font-size: 1.6rem;
+            color: var(--charcoal);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .telegram-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-labels);
+            font-size: 0.8rem;
+            color: var(--brown-dark);
+            margin-top: 0.4rem;
+        }
+
+        .telegram-body {
+            font-family: var(--font-labels);
+            font-size: 1.05rem;
+            color: var(--charcoal-light);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            white-space: pre-line;
+            border-left: 3px solid var(--teal);
+            padding-left: 1rem;
+        }
+
+        .telegram-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        /* RESPONSIVE LAYOUTS - Breakpoints at 375 / 768 / 1280px */
+        
+        /* Tablet Breakpoint (768px) */
+        @media (max-width: 992px) {
+            section {
+                padding: 4.5rem 1.5rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                align-items: center;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-graphic {
+                order: -1;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        /* Mobile Breakpoint (375px) */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--linen);
+                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+                border-left: 2px solid var(--brown);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                padding: 2rem;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: -10px 0 30px rgba(26,26,24,0.15);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+
+            .form-group-full {
+                grid-column: span 1;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header id="header">
+        <div class="nav-container">
+            <a href="#inicio" class="logo-wrap" aria-label="Academia de Oficios Laguna - Inicio">
+                <svg class="logo-icon" viewBox="0 0 24 24">
+                    <!-- Custom SVG Logo: Gear + Sun Silhouette -->
+                    <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm10-3h-2.12c-.22-.72-.54-1.38-.97-1.97l1.5-1.5-1.41-1.41-1.5 1.5c-.59-.43-1.25-.75-1.97-.97V2h-2v2.12c-.72.22-1.38.54-1.97.97l-1.5-1.5-1.41 1.41 1.5 1.5c-.43.59-.75 1.25-.97 1.97H2v2h2.12c.22.72.54 1.38.97 1.97l-1.5 1.5 1.41 1.41 1.5-1.5c.59.43 1.25.75 1.97.97V22h2v-2.12c.72-.22 1.38-.54 1.97-.97l1.5 1.5 1.41-1.41-1.5-1.5c.43-.59.75-1.25.97-1.97H22v-2z"/>
+                </svg>
+                <div class="logo-text">
+                    Academia Laguna
+                    <span>Oficios y Futuro</span>
+                </div>
+            </a>
+            
+            <nav aria-label="Navegación principal">
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="../index.html">Portada</a></li>
+                </ul>
+            </nav>
+
+            <button class="menu-btn" id="menu-btn" aria-label="Abrir menú de navegación" aria-controls="nav-links" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="inicio" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content reveal">
+                <div class="hero-label">Matrícula Abierta — Ciclo 2026</div>
+                <h1 class="hero-title">Capacitaciones que abren <mark>puertas</mark> al futuro</h1>
+                <p class="hero-subtitle">Aprendé habilidades con alta demanda laboral y preparate para acceder a nuevas oportunidades profesionales.</p>
+                <a href="#contacto" class="btn-stamp" role="button">Inscribite Hoy</a>
+            </div>
+            
+            <div class="hero-graphic reveal">
+                <div class="hero-collage-wrapper">
+                    <div class="hero-collage-base">
+                        <svg class="collage-stencil" viewBox="0 0 24 24">
+                            <path d="M19 13H5v-2h14v2z"/>
+                        </svg>
+                        <div class="collage-badge">
+                            BUENOS AIRES
+                            <span>Taller Social</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. SOBRE NOSOTROS SECTION -->
+    <section id="sobre-nosotros" class="about-section">
+        <div class="container about-grid">
+            <div class="reveal">
+                <h2 class="about-title">Nuestra Misión y Valores</h2>
+                <p class="about-text">En Academia de Oficios Laguna creemos que cada persona merece la oportunidad de desarrollar su potencial y construir un futuro mejor. Inspirados por los valores de esfuerzo, superación y transformación social, ofrecemos programas de formación diseñados para brindar herramientas concretas para el mundo laboral.</p>
+                <a href="#cursos" class="btn-stamp btn-stamp-teal" role="button">Explorar Programas</a>
+            </div>
+            
+            <div class="stats-grid reveal">
+                <div class="stat-card-wrap">
+                    <div class="stat-card">
+                        <div class="stat-number">2.500+</div>
+                        <div class="stat-label">Estudiantes</div>
+                    </div>
+                </div>
+                <div class="stat-card-wrap">
+                    <div class="stat-card">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Inserción</div>
+                    </div>
+                </div>
+                <div class="stat-card-wrap">
+                    <div class="stat-card">
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">Cursos</div>
+                    </div>
+                </div>
+                <div class="stat-card-wrap">
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Años</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. CURSOS SECTION -->
+    <section id="cursos" class="courses-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Oferta Formativa</span>
+                <h2 class="section-title">Nuestros Cursos</h2>
+            </div>
+            
+            <div class="courses-grid">
+                
+                <!-- CARD 1 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.11-.9-2-2-2H4c-1.11 0-2 .89-2 2v10c0 1.1.89 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Desarrollo Web y Programación</h3>
+                            <p class="course-desc">Aprendé a crear sitios web y aplicaciones interactivas desde cero utilizando tecnologías modernas como HTML, CSS, JavaScript y bases de datos.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Taller Tecnológico</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.58 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Diseño Gráfico y Marketing Digital</h3>
+                            <p class="course-desc">Domina herramientas creativas y estrategias de marketing en redes sociales para potenciar marcas, crear contenido visual e impulsar campañas.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Creativo</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M7 2v11h3v9l7-12h-4l4-8H7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Electricidad Domiciliaria</h3>
+                            <p class="course-desc">Capacitate en instalación, mantenimiento y diagnóstico de circuitos eléctricos en hogares cumpliendo con las normativas vigentes de seguridad.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Oficio Manual</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M19.16 3H20c1.1 0 2 .9 2 2v14c0 1.1-.9 2-2 2h-.84L12 14.84V21H4c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h8v6.16L19.16 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Carpintería y Fabricación de Muebles</h3>
+                            <p class="course-desc">Adquirí destrezas para diseñar y fabricar mobiliario hogareño y de oficina, aprendiendo técnicas de corte, ensamble y acabados profesionales.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Oficio Manual</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M17.66 17.66l-1.06 1.06c-.39.39-1.02.39-1.41 0l-4.24-4.24c-.39-.39-.39-1.02 0-1.41l1.06-1.06c.39-.39 1.02-.39 1.41 0l4.24 4.24c.39.39.39 1.02 0 1.41zm-6.36-6.36c-.39-.39-.39-1.02 0-1.41l4.24-4.24c.39-.39 1.02-.39 1.41 0l1.06 1.06c.39.39.39 1.02 0 1.41l-4.24 4.24c-.39.39-1.02.39-1.41 0l-1.06-1.06zm-4.95 2.12V9.5h3.04V7.5H6.35V4.46H4.3v3.04H1.26v2h3.04v3.96c0 1.1.9 2 2 2h3.04v-2H6.35z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Reparación de Computadoras</h3>
+                            <p class="course-desc">Aprende a diagnosticar, limpiar y reparar hardware y software de computadoras y dispositivos móviles comerciales y de hogar.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Taller Técnico</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="card-shadow-wrapper reveal">
+                    <div class="card-clipped-content">
+                        <div>
+                            <div class="course-icon-wrap">
+                                <svg class="course-icon" viewBox="0 0 24 24">
+                                    <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6h-6z"/>
+                                </svg>
+                            </div>
+                            <h3 class="course-title">Emprendedurismo y Gestión de Negocios</h3>
+                            <p class="course-desc">Obtené herramientas de gestión financiera, marketing, ventas y planificación estratégica para liderar tu propio proyecto comercial.</p>
+                        </div>
+                        <div class="course-footer">
+                            <span class="course-tag">Gestión</span>
+                            <a href="#contacto" class="course-btn-label">Más Info ➔</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BENEFITS LIST INLINE TAGS -->
+            <div class="benefits-container reveal">
+                <h3 class="benefits-title">Beneficios del Estudiante</h3>
+                <div class="benefits-tags">
+                    <span class="benefit-tag">Certificación oficial</span>
+                    <span class="benefit-tag">Presencial y virtual</span>
+                    <span class="benefit-tag">Profesores especializados</span>
+                    <span class="benefit-tag">Proyectos reales</span>
+                    <span class="benefit-tag">Bolsa de empleo</span>
+                    <span class="benefit-tag">Asesoramiento</span>
+                    <span class="benefit-tag">Inserción laboral</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. TESTIMONIOS SECTION -->
+    <section id="testimonios" class="testimonials-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Casos de Éxito</span>
+                <h2 class="section-title">Voces de Nuestra Comunidad</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                
+                <!-- TESTIMONIAL 1 -->
+                <div class="torn-shadow-wrapper reveal">
+                    <div class="torn-paper-card">
+                        <span class="quote-icon">“</span>
+                        <p class="testimonial-text">Gracias a Academia Laguna conseguí mi primer trabajo como diseñadora gráfica apenas dos meses después de finalizar el curso.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MG</div>
+                            <div class="author-info">
+                                <h4>María González</h4>
+                                <span>Diseño Gráfico</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TESTIMONIAL 2 -->
+                <div class="torn-shadow-wrapper reveal">
+                    <div class="torn-paper-card">
+                        <span class="quote-icon">“</span>
+                        <p class="testimonial-text">Los contenidos son prácticos y los profesores tienen experiencia real en el sector. Hoy trabajo como técnico en reparación de computadoras.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">LF</div>
+                            <div class="author-info">
+                                <h4>Lucas Fernández</h4>
+                                <span>Reparación de PC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TESTIMONIAL 3 -->
+                <div class="torn-shadow-wrapper reveal">
+                    <div class="torn-paper-card">
+                        <span class="quote-icon">“</span>
+                        <p class="testimonial-text">El curso de programación me permitió iniciar una carrera profesional que antes veía imposible.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SR</div>
+                            <div class="author-info">
+                                <h4>Sofía Ramírez</h4>
+                                <span>Desarrollo Web</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACTO SECTION -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-subtitle">Comenzá tu Camino</span>
+                <h2 class="section-title">Solicitá Información</h2>
+            </div>
+            
+            <!-- Clipboard Mockup Frame -->
+            <div class="clipboard-container reveal">
+                <div class="clipboard-clip"></div>
+                <div class="clipboard-paper">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre" class="form-label">Nombre Completo</label>
+                                <input type="text" id="nombre" name="nombre" class="form-input" required placeholder="Ingresá tu nombre">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" class="form-input" required placeholder="correo@ejemplo.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="telefono" class="form-label">Teléfono / Celular</label>
+                                <input type="tel" id="telefono" name="telefono" class="form-input" required placeholder="+54 11 ...">
+                            </div>
+                            <div class="form-group">
+                                <label for="curso" class="form-label">Curso de Interés</label>
+                                <select id="curso" name="curso" class="form-select" required>
+                                    <option value="" disabled selected>Seleccioná un curso</option>
+                                    <option value="web">Desarrollo Web y Programación</option>
+                                    <option value="disenio">Diseño Gráfico y Marketing</option>
+                                    <option value="electricidad">Electricidad Domiciliaria</option>
+                                    <option value="carpinteria">Carpintería y Fabricación de Muebles</option>
+                                    <option value="reparacion">Reparación de Computadoras y Dispositivos</option>
+                                    <option value="emprendimiento">Emprendedurismo y Gestión de Negocios</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-group-full">
+                            <label for="mensaje" class="form-label">Mensaje / Comentarios</label>
+                            <textarea id="mensaje" name="mensaje" class="form-textarea" required placeholder="Escribí aquí tus consultas..."></textarea>
+                        </div>
+                        
+                        <div class="form-submit-container">
+                            <button type="submit" class="btn-stamp btn-stamp-teal">Enviar Consulta</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER SECTION -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <div class="footer-logo-wrap">
+                    <div class="logo-text" style="color: var(--off-white);">
+                        Academia Laguna
+                        <span style="color: var(--teal-light);">Oficios y Futuro</span>
+                    </div>
+                </div>
+                <div class="footer-contact-item">
+                    <svg class="footer-contact-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Av. Nueva Esperanza 1250, Buenos Aires</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg class="footer-contact-icon" viewBox="0 0 24 24">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <span>+54 11 4000-0000</span>
+                </div>
+                <div class="footer-contact-item">
+                    <svg class="footer-contact-icon" viewBox="0 0 24 24">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span>contacto@academialaguna.edu.ar</span>
+                </div>
+            </div>
+
+            <div class="footer-socials">
+                <span class="social-title">Redes Sociales</span>
+                <div class="social-icons">
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2m13 2h-2.5A3.5 3.5 0 0 0 12 8.5V11h-2v3h2v7h3v-7h3v-3h-3V9a1 1 0 0 1 1-1h2V5z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m4.4 3a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m5-2.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg class="social-icon" viewBox="0 0 24 24">
+                            <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09v1.68c0 .6-.03 1.29-.1 2.09-.06.8-.15 1.43-.28 1.9a2.5 2.5 0 0 1-1.73 1.76c-.48.13-1.2.22-2.18.28-.97.06-1.9.1-2.78.1h-4.32c-.88 0-1.8-.04-2.78-.1-.98-.06-1.7-.15-2.18-.28A2.5 2.5 0 0 1 3.44 15c-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09V9.32c0-.6.03-1.29.1-2.09.06-.8.15-1.43.28-1.9A2.5 2.5 0 0 1 5.17 3.58c.48-.13 1.2-.22 2.18-.28C8.32 3.24 9.25 3.2 10.13 3.2h4.32c.88 0 1.8.04 2.78.1.98.06 1.7.15 2.18.28a2.5 2.5 0 0 1 1.73 1.76z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Academia de Oficios Laguna. Todos los derechos reservados.</span>
+            <span>Buenos Aires, Argentina</span>
+        </div>
+    </footer>
+
+    <!-- SIMULATED TELEGRAM MODAL -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-wrapper">
+            <div class="telegram-card">
+                <div class="telegram-stamp">
+                    RECIBIDO
+                    <span id="stamp-date">16 JUN 2026</span>
+                </div>
+                <div class="telegram-header">
+                    <h3>TELEGRAMA URGENTE</h3>
+                    <div class="telegram-meta">
+                        <span>ORIGEN: BUENOS AIRES</span>
+                        <span>DESTINO: INTERESADO/A</span>
+                    </div>
+                </div>
+                <div class="telegram-body" id="telegram-body">
+                    MENSAJE RECIBIDO CON ÉXITO.
+
+                    REGISTRO COMPLETADO BAJO EL NOMBRE DE:
+                    <span id="telegram-name" style="font-weight: bold; color: var(--rust);">-</span>
+
+                    INTERÉS REGISTRADO PARA:
+                    <span id="telegram-course" style="font-weight: bold; color: var(--teal-dark);">-</span>
+
+                    UN REPRESENTANTE DE LA ACADEMIA DE OFICIOS LAGUNA SE PONDRÁ EN CONTACTO A LA BREVEDAD PARA COORDINAR MATRICULACIÓN.
+
+                    STOP.
+                </div>
+                <div class="telegram-footer">
+                    <button class="btn-stamp" id="close-modal-btn">CERRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LAYER -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. MOBILE MENU TOGGLE
+            const menuBtn = document.getElementById('menu-btn');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuBtn.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+                menuBtn.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Close mobile menu on clicking a link
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    menuBtn.classList.remove('open');
+                    menuBtn.setAttribute('aria-expanded', false);
+                });
+            });
+
+            // 2. HEADER SCROLL EFFECT
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // 3. INTERSECTION OBSERVER FOR FADE-IN
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // 4. FORM SUBMISSION & TELEGRAM MODAL
+            const contactForm = document.getElementById('contact-form');
+            const modalOverlay = document.getElementById('modal-overlay');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            
+            const telegramName = document.getElementById('telegram-name');
+            const telegramCourse = document.getElementById('telegram-course');
+            const stampDate = document.getElementById('stamp-date');
+
+            // Format date for the stamp
+            const options = { day: 'numeric', month: 'short', year: 'numeric' };
+            const today = new Date().toLocaleDateString('es-AR', options).toUpperCase();
+            stampDate.textContent = today;
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form values
+                const nombreVal = document.getElementById('nombre').value;
+                const cursoSelect = document.getElementById('curso');
+                const cursoVal = cursoSelect.options[cursoSelect.selectedIndex].text;
+
+                // Populate telegram
+                telegramName.textContent = nombreVal.toUpperCase();
+                telegramCourse.textContent = cursoVal.toUpperCase();
+
+                // Open modal
+                modalOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden'; // prevent scrolling when modal is open
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modalOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+                contactForm.reset();
+            });
+
+            // Close modal by clicking overlay background
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    modalOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                    contactForm.reset();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

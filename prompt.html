@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Prompt utilizado — Academia de Oficios Laguna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --teal:#4A8B8C;
+      --rust:#8B3A2A;
+      --sand:#E8D5B0;
+      --dark:#1A1A18;
+      --paper:#F2E8D5;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+      color:var(--dark);
+      background-image: url('wallpaper.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .overlay{
+      position:fixed; inset:0;
+      background: linear-gradient(rgba(10,10,10,0.55), rgba(10,10,10,0.55));
+      display:flex; align-items:center; justify-content:center;
+      padding:2rem; box-sizing:border-box;
+    }
+    .wrap{ width:100%; max-width:1000px; }
+    .topbar{ display:flex; justify-content:flex-start; margin-top: 1.5rem }
+    .back{
+      display:inline-flex; align-items:center; gap:0.6rem;
+      text-decoration:none; color:var(--sand);
+      background: linear-gradient(180deg, rgba(232,213,176,0.06), rgba(26,26,24,0.24));
+      padding:0.45rem 0.7rem; border-radius:8px; border:1px solid rgba(232,213,176,0.1);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      font-weight:600;
+    }
+    h1{
+      font-family: 'Special Elite', cursive;
+      margin:0 0 0.6rem 0; color:var(--teal);
+      font-size:clamp(1.8rem,5vw,3rem); text-shadow:0 2px 0 rgba(0,0,0,0.5);
+      padding-top:1.5rem;
+    }
+    .paper{
+      background:var(--paper);
+      border-radius:8px;
+      padding:1.25rem 1.4rem;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6), inset 0 -6px 12px rgba(0,0,0,0.03);
+      color: #222;
+      max-height: calc(100vh - 180px);
+      overflow:auto;
+      line-height:1.5;
+      white-space: pre-wrap;
+      font-family: 'Special Elite', monospace;
+      font-size:1rem;
+    }
+    .meta{ margin-top:0.6rem; color:var(--sand); font-size:0.92rem; }
+    @media (max-width:420px){
+      .paper{ padding:1rem; font-size:0.95rem; }
+      .wrap{ padding:0 0.4rem; }
+      .back{ padding:0.4rem 0.6rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <main class="wrap" role="main">
+      <div class="topbar">
+        <a class="back" href="index.html">← Volver a la portada</a>
+      </div>
+      <h1>Prompt utilizado</h1>
+      <section class="paper" aria-label="Contenido del prompt">[ You are an expert frontend developer. Build a complete landing page for "Academia de Oficios Laguna", a vocational training school in Buenos Aires, Argentina. Output a single self-contained HTML file (all CSS and JS embedded). No frameworks. No external files except Google Fonts.
+
+## VISUAL STYLE
+Aesthetic: Argentine social realism — worn materials, layered textures, human craftsmanship.
+Palette: teal #4A8B8C, rust #8B3A2A, linen #E8D5B0, brown #6B4C35, charcoal #1A1A18, off-white #F2E8D5.
+Fonts (Google Fonts): Playfair Display (headings), Source Sans 3 (body), Special Elite (labels).
+Background: simulate industrial collage textures using only CSS layered gradients and SVG noise filter. No image files.
+Signature element: course cards styled as hand-cut paper pieces — unique irregular clip-path polygon per card, slight random rotation (±2deg), paper-grain texture via CSS, no border-radius, shadow suggesting physical lift.
+
+## SECTIONS (in order)
+
+1. HEADER — Logo "Academia de Oficios Laguna", nav links: Inicio | Sobre Nosotros | Cursos | Testimonios | Contacto. Sticky, semi-transparent, backdrop-blur. Mobile hamburger menu.
+
+2. HERO — Full viewport. Headline: "Capacitaciones que abren puertas al futuro". Subheadline: "Aprendé habilidades con alta demanda laboral y preparate para acceder a nuevas oportunidades profesionales." CTA button "Inscribite Hoy" styled as an ink stamp.
+
+3. SOBRE NOSOTROS — Body text: "En Academia de Oficios Laguna creemos que cada persona merece la oportunidad de desarrollar su potencial y construir un futuro mejor. Inspirados por los valores de esfuerzo, superación y transformación social, ofrecemos programas de formación diseñados para brindar herramientas concretas para el mundo laboral." Stats: 2.500+ estudiantes | 85% inserción laboral | 30 cursos | 10 años.
+
+4. CURSOS — 6 hand-cut paper cards: (1) Desarrollo Web y Programación, (2) Diseño Gráfico y Marketing Digital, (3) Electricidad Domiciliaria, (4) Carpintería y Fabricación de Muebles, (5) Reparación de Computadoras y Dispositivos Móviles, (6) Emprendedurismo y Gestión de Negocios. Each with a short description and relevant icon. Below the cards, list 7 benefits as inline tags: Certificación oficial · Presencial y virtual · Profesores especializados · Proyectos reales · Bolsa de empleo · Asesoramiento · Inserción laboral.
+
+5. TESTIMONIOS — 3 torn-paper cards: María González ("Gracias a Academia Laguna conseguí mi primer trabajo como diseñadora gráfica apenas dos meses después de finalizar el curso."), Lucas Fernández ("Los contenidos son prácticos y los profesores tienen experiencia real en el sector. Hoy trabajo como técnico en reparación de computadoras."), Sofía Ramírez ("El curso de programación me permitió iniciar una carrera profesional que antes veía imposible.").
+
+6. CONTACTO — Title: "Solicitá información sobre nuestros cursos". Fields: nombre, email, teléfono, curso de interés (dropdown), mensaje. Button "Enviar Consulta" as ink stamp. Visual mockup only, no backend.
+
+7. FOOTER — Av. Nueva Esperanza 1250, Buenos Aires | +54 11 4000-0000 | contacto@academialaguna.edu.ar | SVG social icons: Facebook, Instagram, LinkedIn, YouTube | © 2026 Academia de Oficios Laguna.
+
+## TECHNICAL
+- Mobile-first, responsive at 375 / 768 / 1280px.
+- Smooth scroll, IntersectionObserver fade-in on sections.
+- Semantic HTML5, WCAG AA contrast.
+- Each clip-path polygon must be unique (hardcode different values per card).
+- Output only the final HTML file. No explanations, no comments. ]</section>
+      <p class="meta">Formato: texto plano — preserva saltos de línea.</p>
+    </main>
+  </div>
+</body>
+</html>
