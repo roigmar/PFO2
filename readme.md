@@ -10,7 +10,7 @@
 
 ## Deploy unificado
 
-[Link al deploy en Vercel]
+[https://pfo-2-seven.vercel.app/]
 
 ---
 
@@ -20,7 +20,6 @@
 /
 ├── index.html              ← Portada con los tres accesos
 ├── prompt.html             ← Visualización del prompt utilizado
-├── prompt.txt              ← Prompt en texto plano
 ├── wallpaper.png           ← Fondo visual del proyecto
 ├── README.md
 ├── codex/
@@ -47,6 +46,13 @@ Plataforma: Antigravity IDE
 Modelo: Gemini 3.5 Flash (Medium)
 
 ---
+
+## Inspiración
+A fin de generar un trabajo que, pese a ser fgenerado mediante IA, tuviera una estética pensada y se alejara un poco de un producto masificado e impersonal busqué inspiración en una obra de la serie "Juanito Laguna" de Antonio Berni: "Juanito Dormido". Elegí precisamente este artista por que lo considero un  representante de los opuesto a estos tiempos y esta modernidad. Su obras de estilo "collage" con sus tramas, texturas y colores crean universos únicos e irrepetibles, a difrencia de las creaciones mediante IA sin más búsqueda que lo funcional.
+Utilicé Nano Banana para generar un fondo que representara esas gamas y esas texturas y luego de esa imágen generé la paleta de colores y parte de las directrices utilizadas en prompt. 
+De esta misma fuente de inspiración fue que surgió la temática del contenido de las landing: oficios como contraposición a IA.
+![Juanito Dormido](screenshots/juanito.jpg)
+
 
 ## Prompt utilizado
 
@@ -90,10 +96,18 @@ Signature element: course cards styled as hand-cut paper pieces — unique irreg
 
 ### Codex — GPT-5
 
-![Codex Hero](screenshots/codex-hero.png)
-![Codex Cursos](screenshots/codex-cursos.png)
+- Hero: [screenshots/Hero-Codex.png](screenshots/Hero-Codex.png)
+- Servicios: [screenshots/Servicios-Codex.png](screenshots/Servicios-Codex.png)
+- Testimonios: [screenshots/Testimonios-Codex.png](screenshots/Testimonios-Codex.png)
+- Nosotros: [screenshots/Nosotros-Codex.png](screenshots/Nosotros-Codex.png)
+- Header: [screenshots/Header-Codex.png](screenshots/Header-Codex.png)
+- Formulario: [screenshots/Formulario-Codex.png](screenshots/Formulario-Codex.png)
 
 ### Antigravity IDE — Gemini 3.5 Flash (Medium)
 
-![Antigravity Hero](screenshots/antigravity-hero.png)
-![Antigravity Cursos](screenshots/antigravity-cursos.png)
+- Hero: [screenshots/Hero-Antigravity.png](screenshots/Hero-Antigravity.png)
+- Servicios: [screenshots/Servicios-Antigravity.png](screenshots/Servicios-Antigravity.png)
+- Testimonios: [screenshots/Testimonios-Antigravity.png](screenshots/Testimonios-Antigravity.png)
+- Nosotros: [screenshots/Nosotros-Antigravity.png](screenshots/Nosotros-Antigravity.png)
+- Header: [screenshots/Header-Antigravity.png](screenshots/Header-Antigravity.png)
+- Formularios: [screenshots/Formularios-Antigravity.png](screenshots/Formularios-Antigravity.png)
